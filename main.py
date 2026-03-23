@@ -17,9 +17,12 @@ def seleccionar_personaje(nombre, es_ia=False):
             if opcion in ["1", "2", "3"]: break
             print("Opción inválida.")
 
-    if opcion == "1": return BillyTheKid(nombre if not es_ia else "Billy Contrincante")
-    if opcion == "2": return SoliTheOutlaw(nombre if not es_ia else "Soli Contrincante")
-    return GrahamTheFarmer(nombre if not es_ia else "Graham Contrincante")
+    if opcion == "1":
+        return BillyTheKid(nombre)
+    elif opcion == "2":
+        return SoliTheOutlaw(nombre)
+    elif opcion == "3":
+        return GrahamTheFarmer(nombre)
 
 if __name__ == "__main__":
     jugador = seleccionar_personaje("Jugador")

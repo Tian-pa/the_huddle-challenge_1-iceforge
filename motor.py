@@ -1,6 +1,7 @@
 import time
 import os
 import random
+from interfaz import ARTE_PERSONAJES
 
 class JuegoPistolero:
     def __init__(self, j1, j2):
@@ -12,19 +13,52 @@ class JuegoPistolero:
     def limpiar_pantalla(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
+    def mostrar_intro_visual(self):
+        self.limpiar_pantalla()
+        print("\n" + "="*80)
+        print("🔥 ¡DUELO EN EL LEJANO OESTE! 🔥".center(80))
+        print("="*80 + "\n")
+
+        # Obtenemos las listas de líneas
+        lineas_j1 = ARTE_PERSONAJES.get(type(self.j1).__name__, ["Sin Arte"]*15)
+        lineas_j2 = ARTE_PERSONAJES.get(type(self.j2).__name__, ["Sin Arte"]*15)
+
+        # Imprimimos línea por línea pegándolas
+        for i in range(15):
+            l1 = lineas_j1[i].ljust(40) # Rellena con espacios a la izquierda
+            l2 = lineas_j2[i].rjust(40) # Rellena con espacios a la derecha
+            print(f"{l1}   VS   {l2}")
+
+        # Nombres debajo de cada uno
+        nombre1 = f"[{self.j1.nombre}]".center(40)
+        nombre2 = f"[{self.j2.nombre}]".center(40)
+        print(f"\n{nombre1}        {nombre2}")
+        print("\n" + "="*80)
+        
+        input("\nPresioná ENTER para desenvainar...")
+
     def iniciar(self):
+        self.mostrar_intro_visual() # <--- Llamamos a la intro nueva
         self.limpiar_pantalla()
         print(f"🔥 DUELO: {self.j1.nombre} vs {self.j2.nombre} 🔥")
         time.sleep(1)
         
         while self.esta_activo:
             self.limpiar_pantalla()
-            print(f"--- TURNO {self.turno_actual} ---")
-            print(self.j1.obtener_estado())
-            print(self.j2.obtener_estado())
-            print("-" * 30)
             
-            # 1. El Humano elige (Usamos el menú del personaje)
+            # --- ENCABEZADO DE ESTADO ---
+            print(f" {self.j1.nombre} ({type(self.j1).__name__}) ".center(50, "="))
+            print(self.j1.obtener_estado())
+            print("-" * 50)
+            
+            # AQUÍ SE MUESTRA EL PERSONAJE DE LA IA
+            print(f" {self.j2.nombre} ({type(self.j2).__name__}) ".center(50, "="))
+            print(self.j2.obtener_estado())
+            print("=" * 50)
+            
+            print(f"\n>>> TURNO {self.turno_actual} <<<")
+            
+            # 1. El Humano elige
             print(self.j1.mostrar_menu())
             accion_h = input(">> Tu acción: ")
             
