@@ -12,17 +12,26 @@ class SoliTheOutlaw(EntidadDuelo):
         return menu
     
     def recargar(self):
+        """Soli solo puede tener 1 bala cargada a la vez"""
         if self._balas < 1:
             super().recargar()
         else:
             print(f"¡{self.nombre} ya tiene su bala lista! No puede cargar más.")
     
-    def robar_bala(self, objetivo):
+    def robar_bala(self, oponente):
         if self._turnos_para_robar >= 2:
-            exito = objetivo.entregar_bala()
-            if exito:
-                self._balas += 1
-                print(f"¡{self.nombre} le robó una bala a {objetivo.nombre}!")
+            if oponente._balas > 0:
+                oponente._balas -= 1
+                print(f"¡{self.nombre} le robó una bala a {oponente.nombre}!")
             else:
-                print(f"¡{self.nombre} intentó robar pero no había nada!")
-            self._turnos_para_robar = 0
+                print(f"{self.nombre} intentó robar, pero no había balas.")
+            
+            # Reset al usarla
+            self._turnos_para_robar = -1
+        else:
+            print("Habilidad aún en enfriamiento.")
+
+    def pasar_turno(self):
+        super().pasar_turno()
+        if self._turnos_para_robar < 2:
+            self._turnos_para_robar += 1

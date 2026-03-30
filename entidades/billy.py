@@ -12,4 +12,4 @@ class BillyTheKid(EntidadDuelo):
         if self._balas < self._capacidad_maxima:
             super().recargar()
         else:
-            print(f"¡{self.nombre} tiene el tambor lleno!")
+            print(f"¡{self.nombre} tiene el tambor lleno!") 

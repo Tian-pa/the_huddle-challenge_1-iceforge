@@ -1,32 +1,11 @@
-import random
-from entidades.billy import BillyTheKid
-from entidades.soli import SoliTheOutlaw
-from entidades.graham import GrahamTheFarmer
 from motor import JuegoPistolero
 
-def seleccionar_personaje(nombre, es_ia=False):
-    if es_ia:
-        opcion = str(random.randint(1, 3))
-    else:
-        while True:
-            print(f"\n--- {nombre.upper()}, ELIGE TU PERSONAJE ---")
-            print("1. Billy (Max 3 balas)")
-            print("2. Soli (Puede robar)")
-            print("3. Graham (Daño x2)")
-            opcion = input(">> Seleccioná (1-3): ")
-            if opcion in ["1", "2", "3"]: break
-            print("Opción inválida.")
-
-    if opcion == "1":
-        return BillyTheKid(nombre)
-    elif opcion == "2":
-        return SoliTheOutlaw(nombre)
-    elif opcion == "3":
-        return GrahamTheFarmer(nombre)
-
 if __name__ == "__main__":
-    jugador = seleccionar_personaje("Jugador")
-    ia = seleccionar_personaje("IA", es_ia=True)
+    # Instanciamos el motor
+    duelo = JuegoPistolero()
     
-    duelo = JuegoPistolero(jugador, ia)
+    # El motor se ocupa de la lógica de selección
+    duelo.configurar_personajes()
+    
+    # Arranca el juego
     duelo.iniciar()
