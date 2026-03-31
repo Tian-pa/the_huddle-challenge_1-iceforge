@@ -1,4 +1,4 @@
-from motor import JuegoPistolero
+from motor.motor import JuegoPistolero
 
 if __name__ == "__main__":
     # Instanciamos el motor

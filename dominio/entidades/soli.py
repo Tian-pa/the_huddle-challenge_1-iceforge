@@ -1,4 +1,4 @@
-from base import EntidadDuelo
+from dominio.base import EntidadDuelo
 
 class SoliTheOutlaw(EntidadDuelo):
     def __init__(self, nombre):
@@ -12,24 +12,20 @@ class SoliTheOutlaw(EntidadDuelo):
         return menu
     
     def recargar(self):
-        """Soli solo puede tener 1 bala cargada a la vez"""
         if self._balas < 1:
-            super().recargar()
-        else:
-            print(f"¡{self.nombre} ya tiene su bala lista! No puede cargar más.")
+            return super().recargar()
+        return f"¡{self.nombre} ya tiene su bala lista! No puede cargar más."
     
     def robar_bala(self, oponente):
         if self._turnos_para_robar >= 2:
             if oponente._balas > 0:
                 oponente._balas -= 1
-                print(f"¡{self.nombre} le robó una bala a {oponente.nombre}!")
+                msg = f"¡{self.nombre} le robó una bala a {oponente.nombre}!"
             else:
-                print(f"{self.nombre} intentó robar, pero no había balas.")
-            
-            # Reset al usarla
+                msg = f"{self.nombre} intentó robar, pero no había balas."
             self._turnos_para_robar = -1
-        else:
-            print("Habilidad aún en enfriamiento.")
+            return msg
+        return "Habilidad aún en enfriamiento."
 
     def pasar_turno(self):
         super().pasar_turno()

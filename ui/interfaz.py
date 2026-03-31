@@ -15,7 +15,7 @@ BILLY_ART = [
     r"      ⣇⣠⠾⠃⠀⠓⠤⢔⣄⢣⠃⡇⣿⠚⠉          ",
     r"              ⠸⠉⢧⠁⡇            "
 ]
-                                ###########♦ ♦ ♦ ♦ Cada uno de estos...es una lista? o qué son exactamente??
+
 SOLI_ART = [
     r"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣶⣤⣀⣀⣤⣶⣷                ",
     r"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣇               ",

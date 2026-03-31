@@ -16,19 +16,20 @@ class EntidadDuelo(ABC): # define una clase base abstracta
 
     def recargar(self):
         self._balas += 1
-        print(f"-> {self.nombre} cargó una bala.")
+        return f"-> {self.nombre} cargó una bala."
 
     def cubrirse(self):
         self._esta_protegido = True
-        print(f"-> {self.nombre} se puso a cubierto.")
+        return f"-> {self.nombre} se puso a cubierto."
 
     def recibir_disparo(self, danio=1):
         if self._esta_protegido:
-            print(f" PROTECCION: ¡{self.nombre} bloqueó el ataque!")
+            self._esta_protegido = False
+            return f" PROTECCION: ¡{self.nombre} bloqueó el ataque!"
         else:
             self._vidas -= danio
-            print(f"BANG: ¡{self.nombre} recibió {danio} de daño! Vidas: {self._vidas}")
-        self._esta_protegido = False
+            self._esta_protegido = False
+            return f"BANG: ¡{self.nombre} recibió {danio} de daño! Vidas: {self._vidas}"
     
     def pasar_turno(self):
         self._esta_protegido = False

@@ -1,4 +1,4 @@
-from base import EntidadDuelo
+from dominio.base import EntidadDuelo
 
 class GrahamTheFarmer(EntidadDuelo):
     def __init__(self, nombre):
@@ -17,9 +17,8 @@ class GrahamTheFarmer(EntidadDuelo):
     
     def recargar(self):
         if self._balas < 2:
-            super().recargar()
-        else:
-            print(f"¡La escopeta de {self.nombre} ya está llena (2/2)!")
+            return super().recargar()
+        return f"¡La escopeta de {self.nombre} ya está llena (2/2)!"
 
     def puede_disparar(self):
         """Sobrescribe la base para asegurar que Graham solo dispare con 2 balas exactas"""

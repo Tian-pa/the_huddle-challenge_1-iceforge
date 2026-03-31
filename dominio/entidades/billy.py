@@ -1,4 +1,4 @@
-from base import EntidadDuelo
+from dominio.base import EntidadDuelo
 
 class BillyTheKid(EntidadDuelo):
     def __init__(self, nombre):
@@ -10,6 +10,5 @@ class BillyTheKid(EntidadDuelo):
 
     def recargar(self):
         if self._balas < self._capacidad_maxima:
-            super().recargar()
-        else:
-            print(f"¡{self.nombre} tiene el tambor lleno!") 
+            return super().recargar()
+        return f"¡{self.nombre} tiene el tambor lleno!"
